@@ -11,7 +11,7 @@ public class UIBuilder {
     public static final JFrame frame = new JFrame("Snake");
     private final JPanel[][] panelGrid = new JPanel[numberOfRows][numberOfColumns];
 
-    public JPanel[][] getPanelGrid(){
+    public JPanel[][] getPanelGrid() {
         return this.panelGrid;
     }
 
@@ -24,33 +24,7 @@ public class UIBuilder {
         frame.setLayout(new GridLayout(numberOfRows, numberOfColumns));
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.addKeyListener(new KeyListener() {
-
-            @Override
-            public void keyTyped(KeyEvent keyEvent) {
-
-            }
-
-            @Override
-            public void keyPressed(KeyEvent keyEvent) {
-                int key = keyEvent.getKeyCode();
-
-                if (key == KeyEvent.VK_UP && Snake.currentDirection != KeyEvent.VK_DOWN) {
-                    Snake.currentDirection = KeyEvent.VK_UP;
-                } else if (key == KeyEvent.VK_RIGHT && Snake.currentDirection != KeyEvent.VK_LEFT) {
-                    Snake.currentDirection = KeyEvent.VK_RIGHT;
-                } else if (key == KeyEvent.VK_DOWN && Snake.currentDirection != KeyEvent.VK_UP) {
-                    Snake.currentDirection = KeyEvent.VK_DOWN;
-                } else if (key == KeyEvent.VK_LEFT && Snake.currentDirection != KeyEvent.VK_RIGHT) {
-                    Snake.currentDirection = KeyEvent.VK_LEFT;
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent keyEvent) {
-
-            }
-        });
+        frame.addKeyListener(new GameKeyListener(snake));
     }
 
     private void addSnakePoints(ArrayList<Point> snakePoints) {
