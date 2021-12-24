@@ -1,6 +1,8 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class UIBuilder {
@@ -12,11 +14,10 @@ public class UIBuilder {
     public static final JPanel scoresPanel = new JPanel();
     private final JPanel[][] panelGrid = new JPanel[numberOfRows][numberOfColumns];
     private int currentScore;
-    private static int highScore = 0;
     private final JTextField scoreTextField = new JTextField("Score: " + currentScore);
-    private final JTextField highScoreTextField = new JTextField("High Score: " + highScore);
+    private final JTextField highScoreTextField = new JTextField("High Score: " + Util.getHighScore());
 
-    public UIBuilder() {
+    public UIBuilder() throws FileNotFoundException {
         scoresPanel.removeAll();
         currentScore = 0;
     }
@@ -25,13 +26,13 @@ public class UIBuilder {
         return this.panelGrid;
     }
 
-    public void incrementScore() {
+    public void incrementScore() throws IOException {
         currentScore++;
         scoreTextField.setText("Score: " + currentScore);
 
-        if (currentScore > highScore) {
-            highScore = currentScore;
-            highScoreTextField.setText("High Score: " + highScore);
+        if (currentScore > Util.getHighScore()) {
+            Util.setHighScore(currentScore);
+            highScoreTextField.setText("High Score: " + Util.getHighScore());
         }
     }
 

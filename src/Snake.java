@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Snake {
@@ -72,7 +73,7 @@ public class Snake {
         return validPoints.get(randomPointIndex);
     }
 
-    public void eatApple(JPanel[][] panelGrid, UIBuilder uiBuilder) {
+    public void eatApple(JPanel[][] panelGrid, UIBuilder uiBuilder) throws IOException {
         uiBuilder.incrementScore();
 
         Point validApplePoint = getValidApplePoint(panelGrid);

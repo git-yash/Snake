@@ -1,8 +1,14 @@
+import java.io.FileNotFoundException;
+
 public class Game {
     private final Snake snake = new Snake();
-    private final UIBuilder uiBuilder = new UIBuilder();
+    private final UIBuilder uiBuilder;
 
-    public void runGame() {
+    public Game() throws FileNotFoundException {
+        uiBuilder = new UIBuilder();
+    }
+
+    public void runGame() throws FileNotFoundException {
         uiBuilder.createFrame(snake);
         try {
             while (snake.snakePoints.size() != UIBuilder.numberOfSquares) {
