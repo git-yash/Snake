@@ -1,7 +1,6 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 public class UIBuilder {
@@ -17,7 +16,7 @@ public class UIBuilder {
     private final JTextField scoreTextField = new JTextField("Score: " + currentScore);
     private final JTextField highScoreTextField = new JTextField("High Score: " + highScore);
 
-    public UIBuilder(){
+    public UIBuilder() {
         scoresPanel.removeAll();
         currentScore = 0;
     }
@@ -26,11 +25,11 @@ public class UIBuilder {
         return this.panelGrid;
     }
 
-    public void incrementScore(){
+    public void incrementScore() {
         currentScore++;
         scoreTextField.setText("Score: " + currentScore);
 
-        if(currentScore > highScore){
+        if (currentScore > highScore) {
             highScore = currentScore;
             highScoreTextField.setText("High Score: " + highScore);
         }
@@ -58,6 +57,10 @@ public class UIBuilder {
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.addKeyListener(new GameKeyListener(snake));
+
+        Border scoresPanelBorder = BorderFactory.createLineBorder(Color.white);
+        scoresPanel.setBorder(scoresPanelBorder);
+
     }
 
     private void addSnakePoints(ArrayList<Point> snakePoints) {
