@@ -72,7 +72,9 @@ public class Snake {
         return validPoints.get(randomPointIndex);
     }
 
-    public void eatApple(JPanel[][] panelGrid) {
+    public void eatApple(JPanel[][] panelGrid, UIBuilder uiBuilder) {
+        uiBuilder.incrementScore();
+
         Point validApplePoint = getValidApplePoint(panelGrid);
         applePoint.x = validApplePoint.x;
         applePoint.y = validApplePoint.y;

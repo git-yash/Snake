@@ -10,10 +10,10 @@ public class Game {
                     Util.showGameEndDialog(UIBuilder.frame, "You hit yourself, play again?");
                 }
                 uiBuilder.updateGrid(snake.getApplePoint(), snake.snakePoints);
-                uiBuilder.setFrame();
+                uiBuilder.setGamePanel();
                 Thread.sleep(125);
                 if (snake.getSnakeHeadPoint().equals(snake.getApplePoint())) {
-                    snake.eatApple(uiBuilder.getPanelGrid());
+                    snake.eatApple(uiBuilder.getPanelGrid(), uiBuilder);
                 }
                 snake.moveBody();
             }
