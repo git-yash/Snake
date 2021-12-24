@@ -13,7 +13,7 @@ public class Game {
                 uiBuilder.setFrame();
                 Thread.sleep(125);
                 if (snake.getSnakeHeadPoint().equals(snake.getApplePoint())) {
-                    snake.eatApple();
+                    snake.eatApple(uiBuilder.getPanelGrid());
                 }
                 snake.moveBody();
             }

@@ -11,6 +11,10 @@ public class UIBuilder {
     public static final JFrame frame = new JFrame("Snake");
     private final JPanel[][] panelGrid = new JPanel[numberOfRows][numberOfColumns];
 
+    public JPanel[][] getPanelGrid(){
+        return this.panelGrid;
+    }
+
     public void createFrame(Snake snake) {
         snake.snakePoints.add(snake.getSnakeHeadPoint());
         snake.snakePoints.add(new Point(7, 2));

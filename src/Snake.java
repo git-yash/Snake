@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -27,10 +28,27 @@ public class Snake {
         return false;
     }
 
-    public void eatApple() {
-        applePoint.x = (int) (Math.random() * UIBuilder.numberOfRows);
-        applePoint.y = (int) (Math.random() * UIBuilder.numberOfColumns);
+    private Point getValidApplePoint(JPanel[][] panelGrid){
+        ArrayList<Point> validPoints = new ArrayList<>();
+
+        for (int i = 0; i < UIBuilder.numberOfRows; i++) {
+            for (int j = 0; j < UIBuilder.numberOfColumns; j++) {
+                if(panelGrid[i][j].getBackground() == Color.black){
+                    validPoints.add(new Point(i, j));
+                }
+            }
+        }
+
+        int randomPointIndex = (int)(Math.random() * validPoints.size());
+        return validPoints.get(randomPointIndex);
+    }
+
+    public void eatApple(JPanel[][] panelGrid) {
+        Point validApplePoint = getValidApplePoint(panelGrid);
+        applePoint.x = validApplePoint.x;
+        applePoint.y = validApplePoint.y;
         Point snakeTailPoint = snakePoints.get(0);
+
         switch (currentDirection) {
             case KeyEvent.VK_UP:
                 snakePoints.add(new Point(snakeTailPoint.x + 1, snakeTailPoint.y));
